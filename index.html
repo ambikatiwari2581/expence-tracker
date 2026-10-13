@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Apni income aur expenses ka hisaab rakhein.">
+  <title>My Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div>
+      <h1>My Expense Tracker</h1>
+      <p>अपने पैसे का हिसाब, आसानी से</p>
+    </div>
+  </header>
+
+  <main>
+    <p id="message" class="message" role="status" aria-live="polite"></p>
+
+    <section id="auth-panel" class="panel">
+      <h2>अपने अकाउंट में प्रवेश करें</h2>
+      <form id="auth-form">
+        <label for="email">Email</label>
+        <input id="email" type="email" autocomplete="username"
+               maxlength="254" required>
+
+        <label for="password">Password</label>
+        <input id="password" type="password"
+               autocomplete="current-password"
+               minlength="8" maxlength="72" required>
+
+        <div class="actions">
+          <button type="submit" id="login-btn">Login</button>
+          <button type="button" id="signup-btn" class="secondary">
+            नया अकाउंट बनाएँ
+          </button>
+        </div>
+      </form>
+      <p class="muted">Password कम से कम 8 characters का होना चाहिए।</p>
+    </section>
+
+    <section id="dashboard" hidden>
+      <div class="welcome panel">
+        <div>
+          <h2>आपका Dashboard</h2>
+          <p id="user-email"></p>
+        </div>
+        <button id="logout-btn" class="danger">Logout</button>
+      </div>
+
+      <div class="summary-grid">
+        <article class="summary income-card">
+          <h3>कुल आय</h3>
+          <p id="income-total">₹0.00</p>
+        </article>
+        <article class="summary expense-card">
+          <h3>कुल खर्च</h3>
+          <p id="expense-total">₹0.00</p>
+        </article>
+        <article class="summary balance-card">
+          <h3>बची राशि</h3>
+          <p id="balance-total">₹0.00</p>
+        </article>
+      </div>
+
+      <section class="panel">
+        <h2 id="entry-heading">नई Entry जोड़ें</h2>
+        <form id="entry-form">
+          <label for="description">विवरण</label>
+          <input id="description" maxlength="100"
+                 placeholder="जैसे: किराने का सामान" required>
+
+          <label for="amount">राशि (₹)</label>
+          <input id="amount" type="number" min="0.01"
+                 max="100000000" step="0.01" required>
+
+          <label for="type">प्रकार</label>
+          <select id="type">
+            <option value="expense">खर्च</option>
+            <option value="income">आय</option>
+          </select>
+
+          <label for="category">Category</label>
+          <select id="category">
+            <option value="Food">Food</option>
+            <option value="Travel">Travel</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Bills">Bills</option>
+            <option value="Education">Education</option>
+            <option value="Salary">Salary</option>
+            <option value="Health">Health</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <label for="date">तारीख</label>
+          <input id="date" type="date" required>
+
+          <div class="actions">
+            <button id="save-btn" type="submit">Entry Save करें</button>
+            <button id="cancel-edit" type="button" class="secondary" hidden>
+              Edit रद्द करें
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>मासिक रिपोर्ट</h2>
+        <label for="report-month">महीना चुनें</label>
+        <input id="report-month" type="month">
+        <button id="report-btn" type="button">रिपोर्ट देखें</button>
+
+        <div id="report-result" class="report-result">
+          रिपोर्ट देखने के लिए महीना चुनें।
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="list-heading">
+          <h2>आपकी Entries</h2>
+          <button id="refresh-btn" class="secondary" type="button">
+            Refresh
+          </button>
+        </div>
+        <div id="entries" class="entries"></div>
+      </section>
+
+      <section id="admin-panel" class="panel" hidden>
+        <h2>Admin Dashboard</h2>
+        <p>यह जानकारी केवल अधिकृत admin को दिखाई जाती है।</p>
+        <button id="admin-refresh" type="button">Admin रिपोर्ट देखें</button>
+        <div id="admin-result"></div>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <p>My Expense Tracker · अपने खर्चों को व्यवस्थित रखें</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
